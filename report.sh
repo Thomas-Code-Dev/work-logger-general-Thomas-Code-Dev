@@ -30,7 +30,7 @@ check_file_existance() {
 }
 
 calculate_work_hours() {
-    while IFS=, read -r date day_of_week hours_worked; do
+  while IFS=, read -r date day_of_week hours_worked; do
     [[ "$hours_worked" != "hours worked" ]] && ((count = count + hours_worked))
   done <"$file"
   echo "${count}"

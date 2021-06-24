@@ -3,7 +3,6 @@ sum_work_hours() {
   name=${1,}
   month=${2,}
   apply_default_month
-  apply_default_employee
   check_file_existance
   calculate_work_hours
 }
@@ -14,16 +13,11 @@ apply_default_month() {
   fi
 }
 
-apply_default_employee() {
-  if [ -z "$name" ]; then
-    ${name:=alice}
-  fi
-}
-
 check_file_existance() {
   file="logs/$name/$month.csv"
   if [ ! -f "${file}" ]; then
     echo "Error, the log for ${name^} regarding ${month^} does not exist" && exit 1
+#    echo $?
   fi
 }
 
@@ -35,3 +29,4 @@ calculate_work_hours() {
 }
 
 sum_work_hours $1 $2
+echo $name
